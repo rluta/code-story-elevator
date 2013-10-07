@@ -1,0 +1,27 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET        /                      controllers.Application.state
+
+# Map static resources from the /public folder to the /assets URL path
+GET        /assets/*file          controllers.Assets.at(path="/public", file)
+
+# Elevator events
+# GET /call?atFloor=[0-5]&to=[UP|DOWN]
+GET        /call                  controllers.Application.call(atFloor: Int, to: String)
+# GET /go?floorToGo=[0-5]
+GET        /go                    controllers.Application.go(floorToGo: Int)
+#GET /userHasEntered
+GET        /userHasEntered        controllers.Application.userHasEntered
+#GET /userHasExited
+GET        /userHasExited         controllers.Application.userHasExited
+#GET /reset?cause=information+message
+GET        /reset                 controllers.Application.reset(cause)
+
+#Elevator command
+#GET /nextCommand : body of the request must contains NOTHING, UP, DOWN, OPEN or CLOSE
+GET        /nextCommand           controllers.Application.nextCommand
+
+GET        /state                 controllers.Application.state
